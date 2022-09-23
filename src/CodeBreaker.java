@@ -8,10 +8,11 @@ public class CodeBreaker
 {
     public static void main(String[] args)
     {
-        File name = new File("/Users/krishnan/Downloads/Java Files/12th Grade/CodeBreaker/src/code.txt");
-        String solution = "";
+        File name = new File("src/code.txt");
         List<String> guesses = new ArrayList<>();
+        List<String> solutions  = new ArrayList<>();
         int count = 0;
+        int solutionsCount = 0;
 
         try
         {
@@ -20,9 +21,9 @@ public class CodeBreaker
 
             while ((text = input.readLine()) != null)
             {
-                if(count == 0)
+                if(count % 2 == 0)
                 {
-                    solution = text;
+                    solutions.add(text);
                 }
                 else
                 {
@@ -40,7 +41,7 @@ public class CodeBreaker
 
         for(int i = 0; i < guesses.size(); i++)
         {
-            System.out.println("Code: " + solution);
+            System.out.println("Code: " + solutions.get(solutionsCount));
 
             //adding each character in guess to list
             List<Character> guessChars = new ArrayList<>();
@@ -53,7 +54,9 @@ public class CodeBreaker
             List<Character> solutionChars = new ArrayList<>();
             for(int m = 0; m < 4; m++)
             {
-                solutionChars.add(solution.charAt(m));
+                solutionChars.add(solutions.get(solutionsCount).charAt(m));
+                if(m == 3)
+                    solutionsCount++;
             }
 
             int correctColor = 0;
